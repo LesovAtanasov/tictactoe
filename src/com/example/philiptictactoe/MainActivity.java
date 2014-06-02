@@ -1,11 +1,12 @@
 package com.example.philiptictactoe;
 
 import android.app.Activity;
+import android.os.Bundle;
 
 public class MainActivity extends Activity {
 	@Override
-	protected void onChildTitleChanged(Activity childActivity,
-			CharSequence title) {
-		super.onChildTitleChanged(childActivity, title);
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
 	}
 }
