@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GetUsernamesActivity" >
+    
+    <EditText
+	    android:id="@+id/username_player_one"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+	    android:inputType="text" />
+    
+    <EditText
+	    android:id="@+id/username_player_two"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+	    android:inputType="text"
+	    android:layout_below="@id/username_player_one" />
+    
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username_player_two"
+        android:text="@string/save_continue" />
+
+</RelativeLayout>
