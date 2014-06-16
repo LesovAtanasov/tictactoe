@@ -16,6 +16,7 @@ import android.widget.GridView;
 public class GridCellView extends View {
 
 	private Drawable cell;
+	private ViewGroup parent;
 
 	public GridCellView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -23,16 +24,23 @@ public class GridCellView extends View {
 
 	public GridCellView(Context context, ViewGroup parent) {
 		super(context);
+		this.parent = parent;
 		LayoutInflater mInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mInflater.inflate(R.drawable.rectangle_view, parent, false);
+		setBackgroundResource(R.drawable.rectangle);
 	}
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+		int parentWidth = parent.getWidth();
+		int parentHeight = parent.getHeight();
 		
-		setMeasuredDimension(50, 50);
+		int childWidth = parentWidth / 3;
+		int childHeight = parentHeight / 3;
+		
+		setMeasuredDimension(childWidth, childHeight);
 	}
 
 	@Override
