@@ -1,17 +1,14 @@
 package com.example.philiptictactoe.adapter;
 
-import java.util.List;
-
-import com.example.philiptictactoe.R;
-
 import android.content.Context;
-import android.graphics.Color;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.TextView;
+
+import com.example.philiptictactoe.R;
 
 public class GridAdapter extends BaseAdapter {
 
@@ -42,22 +39,18 @@ public class GridAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		Button btn;
+		View rectangle;
+		
 		if (convertView == null) {
 			// if it's not recycled, initialize some attributes
-			btn = new Button(mContext);
-			btn.setLayoutParams(new GridView.LayoutParams(100, 55));
-			btn.setPadding(8, 8, 8, 8);
+			rectangle = View.inflate(mContext, R.drawable.rectangle_view, null);
+			rectangle.setLayoutParams(new GridView.LayoutParams(100, 55));
+			rectangle.setPadding(8, 8, 8, 8);
 		} else {
-			btn = (Button) convertView;
+			rectangle = (View) convertView;
 		}
-		btn.setText(filesnames[position]);
-		// filenames is an array of strings
-		btn.setTextColor(Color.WHITE);
-		btn.setBackgroundResource(R.drawable.ic_launcher);
-		btn.setId(position);
 
-		return btn;
+		return rectangle;
 	}
 
 }
