@@ -1,5 +1,6 @@
 package com.example.philiptictactoe;
 
+import Listeners.SaveButtonListener;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,16 +21,7 @@ public class GetUsernamesActivity extends Activity {
 		
 		Button saveButton = (Button) findViewById(R.id.save_button);
 		
-		saveButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				if (playerOne.getText().toString().length() != 0) {
-				   
-				}
-			}
-			
-		});
+		saveButton.setOnClickListener(new SaveButtonListener(this, playerOne, playerTwo));
 		
 	}
 }
