@@ -1,4 +1,4 @@
-package Listeners;
+package com.example.philiptictactoe.listeners;
 
 import com.example.philiptictactoe.GetUsernamesActivity;
 import com.example.philiptictactoe.MainActivity;
@@ -9,16 +9,15 @@ import android.view.View.OnClickListener;
 
 public class StartGameButtonListener implements OnClickListener {
 
-	private MainActivity thisClass;
+	private MainActivity mainActivity;
 
 	public StartGameButtonListener(MainActivity mainActivity) {
-		thisClass = mainActivity;
+		this.mainActivity = mainActivity;
 	}
 
 	@Override
 	public void onClick(View v) {
-		Intent intent = new Intent(thisClass,
-				GetUsernamesActivity.class);
-		thisClass.startActivity(intent);
+		Intent intent = new Intent(mainActivity, GetUsernamesActivity.class);
+		mainActivity.startActivity(intent);
 	}
 }

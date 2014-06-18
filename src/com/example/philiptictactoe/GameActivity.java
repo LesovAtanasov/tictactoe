@@ -1,8 +1,5 @@
 package com.example.philiptictactoe;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,5 +38,4 @@ public class GameActivity extends Activity {
 //		field.drawField();
 		
 	}
-	
 }

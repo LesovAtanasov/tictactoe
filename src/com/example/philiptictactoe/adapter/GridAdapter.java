@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.GridView;
 
 import com.example.philiptictactoe.R;
+import com.example.philiptictactoe.listeners.CellOnClickListener;
 import com.example.philiptictactoe.view.GridCellView;
 
 public class GridAdapter extends BaseAdapter {
@@ -42,10 +43,12 @@ public class GridAdapter extends BaseAdapter {
 		View rectangle;
 		if (convertView == null) {
 			// if it's not recycled, initialize some attributes
-			// rectangle = View.inflate(mContext, R.drawable.rectangle_view,null);
+			// rectangle = View.inflate(mContext,
+			// R.drawable.rectangle_view,null);
 			rectangle = new GridCellView(mContext, parent);
 			rectangle.setLayoutParams(new GridView.LayoutParams(100, 55));
 			rectangle.setPadding(8, 8, 8, 8);
+			rectangle.setOnClickListener(new CellOnClickListener());
 		} else {
 			rectangle = (View) convertView;
 		}
