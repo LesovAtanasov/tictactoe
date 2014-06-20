@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.philiptictactoe.R;
+import com.example.philiptictactoe.application.CrossSingleton;
 
 public class GridCellView extends View {
 
@@ -17,13 +18,21 @@ public class GridCellView extends View {
 
 	private ViewGroup parent;
 
-	private float lineStartX;
+	private float mainStartX;
 
-	private float lineStartY;
+	private float mainStartY;
 
-	private float lineEndX;
+	private float mainEndX;
 
-	private float lineEndY;
+	private float mainEndY;
+
+	private float secondaryStartX;
+
+	private float secondaryEndX;
+
+	private float secondaryStartY;
+
+	private float secondaryEndY;
 
 	public GridCellView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -65,38 +74,48 @@ public class GridCellView extends View {
 		super.onLayout(changed, left, top, right, bottom);
 	}
 
-	public void setLineDimensions(float lineStartX, float lineStartY,
-			float lineEndX, float lineEndY) {
+	public void setMainDiagonalDimensions(float mainDiagonalStartX, float mainDiagonalStartY,
+			float mainDiagonalEndX, float mainDiagonalEndY) {
 		// Set X start-end
-		this.lineStartX = lineStartX;
-		this.lineEndX = lineEndX;
+		this.mainStartX = mainDiagonalStartX;
+		this.mainEndX = mainDiagonalEndX;
 
 		// Set Y start-end
-		this.lineStartY = lineStartY;
-		this.lineEndY = lineEndY;
+		this.mainStartY = mainDiagonalStartY;
+		this.mainEndY = mainDiagonalEndY;
+	}
+	
+	public void setSecondaryDiagonalDimensions(float secondaryDiagonalStartX, float secondaryDiagonalStartY,
+			float secondaryDiagonalEndX, float secondaryDiagonalEndY) {
+		// Set X start-end
+		this.secondaryStartX = secondaryDiagonalStartX;
+		this.secondaryEndX = secondaryDiagonalEndX;
+
+		// Set Y start-end
+		this.secondaryStartY = secondaryDiagonalStartY;
+		this.secondaryEndY = secondaryDiagonalEndY;
 	}
 
 	private void initDefaultLineDimensions() {
 		// Set Default X start-end
-		this.lineStartX = 0;
-		this.lineEndX = 0;
+		this.mainStartX = 0;
+		this.mainEndX = 0;
 
 		// Set Default Y start-end
-		this.lineStartY = 0;
-		this.lineEndY = 0;
+		this.mainStartY = 0;
+		this.mainEndY = 0;
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		// if(isCross)
-		// {
-		//
-		canvas.drawLine(lineStartX, lineStartY, lineEndX, lineEndY, drawPaint);
-		// }
-		// else
-		// {
-//		canvas.drawCircle(cx, cy, radius, paint);
-		// }
+		CrossSingleton instance = CrossSingleton.getInstance();
+		boolean isCross = instance.getCross();
+		if(isCross) {
+			canvas.drawLine(mainStartX, mainStartY, mainEndX, mainEndY, drawPaint);
+			canvas.drawLine(secondaryStartX, secondaryStartY, secondaryEndX, secondaryEndY, drawPaint);
+		} else {
+			canvas.drawCircle(10, 10, 20, drawPaint);
+		}
 	}
 }
