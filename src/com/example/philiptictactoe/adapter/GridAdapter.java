@@ -42,13 +42,11 @@ public class GridAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View rectangle;
 		if (convertView == null) {
-			// if it's not recycled, initialize some attributes
-			// rectangle = View.inflate(mContext,
-			// R.drawable.rectangle_view,null);
 			rectangle = new GridCellView(mContext, parent);
+			rectangle.setId(position);
 			rectangle.setLayoutParams(new GridView.LayoutParams(100, 55));
 			rectangle.setPadding(8, 8, 8, 8);
-			rectangle.setOnClickListener(new CellOnClickListener());
+			rectangle.setOnClickListener(new CellOnClickListener((GridView) parent));
 		} else {
 			rectangle = (View) convertView;
 		}

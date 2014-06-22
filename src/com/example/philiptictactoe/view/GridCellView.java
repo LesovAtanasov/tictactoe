@@ -14,6 +14,10 @@ import com.example.philiptictactoe.application.CrossSingleton;
 
 public class GridCellView extends View {
 
+	private static final String symbolTypeCross = "cross";
+
+	private static final String symbolTypeCircle = "circle";
+
 	private Paint drawPaint;
 
 	private ViewGroup parent;
@@ -34,6 +38,16 @@ public class GridCellView extends View {
 
 	private float secondaryEndY;
 
+	private float circleY;
+
+	private float circleX;
+
+	private float circleRadius;
+
+	private boolean isClicked;
+
+	private String symbolType;
+
 	public GridCellView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
@@ -48,12 +62,14 @@ public class GridCellView extends View {
 
 		initPaint();
 		initDefaultLineDimensions();
+		initDefaultCircleDimensions();
 	}
 
 	private void initPaint() {
 		drawPaint = new Paint();
 		drawPaint.setColor(Color.RED);
 		drawPaint.setStrokeWidth(25);
+		drawPaint.setStyle(Paint.Style.STROKE);
 	}
 
 	@Override
@@ -95,6 +111,16 @@ public class GridCellView extends View {
 		this.secondaryStartY = secondaryDiagonalStartY;
 		this.secondaryEndY = secondaryDiagonalEndY;
 	}
+	
+	public void setCircleDimensions(float circleX, float circleY,
+			float circleRadius) {
+		// Set Default circle X and Y
+		this.circleX = circleX;
+		this.circleY = circleY;
+
+		// Set Default Circle radius
+		this.circleRadius = circleRadius;
+	}
 
 	private void initDefaultLineDimensions() {
 		// Set Default X start-end
@@ -104,6 +130,15 @@ public class GridCellView extends View {
 		// Set Default Y start-end
 		this.mainStartY = 0;
 		this.mainEndY = 0;
+	}
+	
+	private void initDefaultCircleDimensions() {
+		// Set Default circle X and Y
+		this.circleX = 0;
+		this.circleY = 0;
+
+		// Set Default Circle radius
+		this.circleRadius = 0;
 	}
 
 	@Override
@@ -115,7 +150,27 @@ public class GridCellView extends View {
 			canvas.drawLine(mainStartX, mainStartY, mainEndX, mainEndY, drawPaint);
 			canvas.drawLine(secondaryStartX, secondaryStartY, secondaryEndX, secondaryEndY, drawPaint);
 		} else {
-			canvas.drawCircle(10, 10, 20, drawPaint);
+			canvas.drawCircle(circleX, circleY, circleRadius, drawPaint);
 		}
+	}
+
+	public void setClicked(boolean clicked) {
+		this.isClicked = clicked;
+	}
+	
+	public boolean getClicked() {
+		return this.isClicked;
+	}
+
+	public void setSymbolType(boolean status) {
+		if(status == true) {
+			this.symbolType = symbolTypeCross;
+		} else {
+			this.symbolType = symbolTypeCircle;
+		}
+	}
+	
+	public String getSymbolType() {
+		return this.symbolType;
 	}
 }
