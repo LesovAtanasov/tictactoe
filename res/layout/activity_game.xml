@@ -15,6 +15,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true" />
     
+    <TextView
+        android:id="@+id/player_one_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/player_one_name" />
+    
+    <TextView
+        android:id="@+id/player_two_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/player_two_name" />
+    
     <GridView
         android:id="@+id/grid"
         android:layout_width="match_parent"

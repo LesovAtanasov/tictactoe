@@ -10,7 +10,8 @@ import com.example.philiptictactoe.adapter.GridAdapter;
 
 public class GameActivity extends Activity {
 	
-	private Player playerOne;
+	private Player firstPlayer;
+	private Player secondPlayer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +28,20 @@ public class GameActivity extends Activity {
 		field.setAdapter(new GridAdapter(fieldList,this));
 		
 		Intent intent = getIntent();
-		playerOne = new Player(intent.getStringExtra("player_one").toString());
-		final String playerOneName = intent.getStringExtra("player_one").toString();
-		final String playerTwoName = intent.getStringExtra("player_two").toString();
+		firstPlayer = new Player(intent.getStringExtra("player_one").toString());
+		secondPlayer = new Player(intent.getStringExtra("player_two").toString());
 		
 		TextView playerOne = (TextView) findViewById(R.id.player_one_name);
-		playerOne.setText(playerOneName);
+		playerOne.setText(firstPlayer.getName());
 		
 		TextView playerTwo = (TextView) findViewById(R.id.player_two_name);
-		playerTwo.setText(playerTwoName);
+		playerTwo.setText(secondPlayer.getName());
+		
+		TextView playerOneScore = (TextView) findViewById(R.id.player_one_score);
+		playerOneScore.setText("" +firstPlayer.getStats());
+		
+		TextView playerTwoScore = (TextView) findViewById(R.id.player_two_score);
+		playerTwoScore.setText("" +secondPlayer.getStats());
 		
 	}
 }
